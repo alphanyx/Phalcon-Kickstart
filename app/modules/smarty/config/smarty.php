@@ -12,7 +12,7 @@ $smartyConf = new Phalcon\Config(array(
 		'compile_check' => true,
 		'caching' => false,
 		'debugging' => true,
-		'force_compiling' => true,
+		'force_compile' => true,
 		'error_reporting' => E_ALL & ~E_NOTICE,
 	),
 	'smarty_dir' => PHALCON_ROOT . '/app/vendor/Smarty-3.1.15/libs/Smarty.class.php'

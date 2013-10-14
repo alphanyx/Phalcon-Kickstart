@@ -17,6 +17,7 @@ try {
 
 	\Module\Loader::instance()->init()
 		->addModules(array(
+			'config' => 'MODULE:config',
 			'smarty' => 'MODULE:smarty',
 		))
 		->apply();

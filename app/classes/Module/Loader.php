@@ -38,6 +38,20 @@ class Loader
 		return $this;
 	}
 
+	public function getModules() {
+		return $this->_modules;
+	}
+
+	public function translateModulePath($modulePath) {
+		if (strpos($modulePath, 'MODULE:') !== false) {
+			$modulePath = str_replace('MODULE:', $this->_modulesDirectory, $modulePath);
+		} else {
+			$modulePath = PHALCON_ROOT . $modulePath;
+		}
+
+		return $modulePath;
+	}
+
 	public function addModules(array $modules) {
 		$this->_modules = array_merge($this->_modules, $modules);
 
@@ -65,11 +79,7 @@ class Loader
 	public function apply() {
 		if (is_array($this->_modules) && count($this->_modules)) {
 			foreach ($this->_modules as $module => $modulePath) {
-				if (strpos($modulePath, 'MODULE:') !== false) {
-					$modulePath = str_replace('MODULE:', $this->_modulesDirectory, $modulePath);
-				} else {
-					$modulePath = PHALCON_ROOT . $modulePath;
-				}
+				$modulePath = $this->translateModulePath($modulePath);
 				if (is_dir($modulePath)) {
 					$MODULE_PATH = realpath($modulePath) . DS;
 

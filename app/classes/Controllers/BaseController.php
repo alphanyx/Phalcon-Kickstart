@@ -9,8 +9,21 @@ class BaseController extends \Phalcon\Mvc\Controller
 
 		$this->view->registerEngines(
 			array(
-				".html" => "\Smarty\TemplateEngine\Adapter"
+				".html" => "Modules\Smarty\TemplateEngine\Adapter"
 			)
 		);
+
+		$products = array(
+			array(
+				'id' => '123',
+				'name' => 'product x'
+			),
+			array(
+				'id' => '456',
+				'name' => 'product y'
+			)
+		);
+
+		$this->view->setVar("products", $products);
 	}
 }
